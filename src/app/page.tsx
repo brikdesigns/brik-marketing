@@ -1,65 +1,198 @@
-import Image from "next/image";
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      {/* Hero */}
+      <section
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: 'var(--padding-huge) var(--padding-lg)',
+          textAlign: 'center',
+        }}
+      >
+        <h1
+          style={{
+            fontFamily: 'var(--font-family-heading)',
+            fontSize: 'var(--heading-huge)',
+            color: 'var(--text-primary)',
+            lineHeight: 1.1,
+          }}
+        >
+          Marketing That Works.
+          <br />
+          Design That Builds.
+        </h1>
+        <p
+          style={{
+            fontFamily: 'var(--font-family-body)',
+            fontSize: 'var(--body-lg)',
+            color: 'var(--text-secondary)',
+            maxWidth: 640,
+            margin: 'var(--gap-lg) auto 0',
+          }}
+        >
+          We help small businesses show up better, work smarter, and grow faster
+          — brik by brik.
+        </p>
+        <div style={{ marginTop: 'var(--gap-xl)', display: 'flex', gap: 'var(--gap-md)', justifyContent: 'center' }}>
+          <a
+            href="/services"
+            style={{
+              fontFamily: 'var(--font-family-label)',
+              fontSize: 'var(--label-md)',
+              backgroundColor: 'var(--background-brand-primary)',
+              color: 'var(--text-inverse)',
+              padding: 'var(--padding-sm) var(--padding-lg)',
+              borderRadius: 'var(--border-radius-md)',
+              textDecoration: 'none',
+            }}
+          >
+            Explore Design Services
+          </a>
+          <a
+            href="/contact"
+            style={{
+              fontFamily: 'var(--font-family-label)',
+              fontSize: 'var(--label-md)',
+              backgroundColor: 'transparent',
+              color: 'var(--text-brand-primary)',
+              padding: 'var(--padding-sm) var(--padding-lg)',
+              borderRadius: 'var(--border-radius-md)',
+              border: '1px solid var(--border-brand-primary)',
+              textDecoration: 'none',
+            }}
+          >
+            Let&apos;s Talk
+          </a>
+        </div>
+      </section>
+
+      {/* Services preview — will be CMS-driven */}
+      <section
+        style={{
+          backgroundColor: 'var(--surface-secondary)',
+          padding: 'var(--padding-xl) var(--padding-lg)',
+        }}
+      >
+        <div style={{ maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
+          <h2
+            style={{
+              fontFamily: 'var(--font-family-heading)',
+              fontSize: 'var(--heading-lg)',
+              color: 'var(--text-primary)',
+            }}
+          >
+            What We Do
+          </h2>
+          <p
+            style={{
+              fontFamily: 'var(--font-family-body)',
+              fontSize: 'var(--body-md)',
+              color: 'var(--text-secondary)',
+              maxWidth: 600,
+              margin: 'var(--gap-md) auto 0',
+            }}
+          >
+            From branding to websites to behind-the-scenes systems, we help you
+            build a business that looks good and works better.
+          </p>
+          {/* TODO: ServiceCard grid from Supabase */}
+          <p
+            style={{
+              fontFamily: 'var(--font-family-body)',
+              fontSize: 'var(--body-sm)',
+              color: 'var(--text-muted)',
+              marginTop: 'var(--gap-xl)',
+            }}
+          >
+            [Service cards will render here from Supabase data]
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      {/* Plans preview */}
+      <section style={{ padding: 'var(--padding-xl) var(--padding-lg)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
+          <h2
+            style={{
+              fontFamily: 'var(--font-family-heading)',
+              fontSize: 'var(--heading-lg)',
+              color: 'var(--text-primary)',
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Monthly Subscription
+          </h2>
+          <p
+            style={{
+              fontFamily: 'var(--font-family-body)',
+              fontSize: 'var(--body-md)',
+              color: 'var(--text-secondary)',
+              maxWidth: 600,
+              margin: 'var(--gap-md) auto 0',
+            }}
           >
-            Documentation
-          </a>
+            We&apos;re more than a design studio — we&apos;re your strategic marketing
+            partner.
+          </p>
+          {/* TODO: PlanCard grid from Supabase */}
+          <p
+            style={{
+              fontFamily: 'var(--font-family-body)',
+              fontSize: 'var(--body-sm)',
+              color: 'var(--text-muted)',
+              marginTop: 'var(--gap-xl)',
+            }}
+          >
+            [Plan cards will render here from Supabase data]
+          </p>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* CTA */}
+      <section
+        style={{
+          backgroundColor: 'var(--surface-brand-primary)',
+          padding: 'var(--padding-xl) var(--padding-lg)',
+          textAlign: 'center',
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: 'var(--font-family-heading)',
+            fontSize: 'var(--heading-lg)',
+            color: 'var(--text-inverse)',
+          }}
+        >
+          Get in Touch
+        </h2>
+        <p
+          style={{
+            fontFamily: 'var(--font-family-body)',
+            fontSize: 'var(--body-md)',
+            color: 'var(--text-inverse)',
+            opacity: 0.9,
+            margin: 'var(--gap-md) auto 0',
+          }}
+        >
+          Starting a new project or want to collaborate with us?
+        </p>
+        <a
+          href="/contact"
+          style={{
+            display: 'inline-block',
+            marginTop: 'var(--gap-lg)',
+            fontFamily: 'var(--font-family-label)',
+            fontSize: 'var(--label-md)',
+            backgroundColor: 'var(--grayscale--white)',
+            color: 'var(--brand--primary)',
+            padding: 'var(--padding-sm) var(--padding-lg)',
+            borderRadius: 'var(--border-radius-md)',
+            textDecoration: 'none',
+          }}
+        >
+          Let&apos;s Talk
+        </a>
+      </section>
+    </>
   );
 }

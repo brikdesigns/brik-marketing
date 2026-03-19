@@ -1,26 +1,308 @@
+/* BDS Design System — fonts + auto-generated tokens (Style Dictionary from Figma) */
+@import '../../brik-bds/tokens/fonts.css';
+@import '../../brik-bds/tokens/figma-tokens.css';
+
+/* Tailwind layers */
 @import "tailwindcss";
 
+/* Match overscroll background to page color */
+html {
+  background-color: var(--page-primary);
+  overflow-x: hidden;
+}
+:root[data-theme="dark"] {
+  background-color: var(--grayscale--black);
+}
+
+/* ================================================================
+   Brik Designs brand tokens — light mode (default)
+
+   BDS figma-tokens.css provides template defaults (blue-green, Open Sans).
+   This block overrides with Brik Designs identity:
+   poppy red, Poppins, custom grayscale.
+
+   Adapted from brik-client-portal globals.css.
+   ================================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---- Brand color primitives ---- */
+  --brand--primary: #e35335;
+  --brand--secondary: #1b1b1b;
+  --brand--accent: #f1f0ec;
+
+  /* Poppy scale */
+  --poppy--lightest: #ffefeb;
+  --poppy--lighter: #ffa693;
+  --poppy--light-base: #e35335;
+  --poppy--dark: #b0351b;
+  --poppy--darker: #7d1d09;
+  --poppy--darkest: #4a0d00;
+
+  /* Tan scale */
+  --tan--lightest: #f1f0ec;
+  --tan--lighter: #cfcdc5;
+  --tan--light: #adaaa0;
+  --tan--dark: #8b887d;
+  --tan--darker: #69665c;
+  --tan--darkest: #47453c;
+
+  /* Grayscale */
+  --grayscale--white: white;
+  --grayscale--lightest: #f2f2f2;
+  --grayscale--lighter: #e0e0e0;
+  --grayscale--light: #bdbdbd;
+  --grayscale--dark: #828282;
+  --grayscale--darker: #333;
+  --grayscale--darkest: #1b1b1b;
+  --grayscale--black: #000;
+
+  /* ---- Semantic color tokens ---- */
+
+  /* Page */
+  --page-primary: var(--grayscale--white);
+  --page-secondary: var(--grayscale--lightest);
+  --page-accent: var(--tan--lightest);
+
+  /* Text */
+  --text-primary: var(--grayscale--darkest);
+  --text-secondary: var(--grayscale--dark);
+  --text-muted: var(--grayscale--light);
+  --text-inverse: var(--grayscale--white);
+  --text-on-color-dark: var(--grayscale--white);
+  --text-on-color-light: var(--grayscale--black);
+  --text-brand-primary: var(--brand--primary);
+  --text-negative: #eb5757;
+  --text-warning: #634716;
+  --text-success: #2a5542;
+
+  /* Surface */
+  --surface-primary: var(--grayscale--white);
+  --surface-secondary: var(--grayscale--lightest);
+  --surface-tertiary: var(--grayscale--lighter);
+  --surface-negative: #fdeaea;
+  --surface-warning: #fffee1;
+  --surface-success: #f0faf0;
+  --surface-brand-primary: var(--brand--primary);
+  --surface-brand-secondary: var(--grayscale--white);
+
+  /* Background */
+  --background-brand-primary: var(--brand--primary);
+  --background-primary: var(--grayscale--white);
+  --background-secondary: var(--grayscale--lightest);
+  --background-elevated: var(--grayscale--white);
+  --background-inverse: var(--grayscale--darkest);
+  --background-input: var(--grayscale--white);
+
+  /* Border */
+  --border-primary: var(--grayscale--darkest);
+  --border-secondary: var(--grayscale--lighter);
+  --border-muted: var(--grayscale--lighter);
+  --border-brand-primary: var(--brand--primary);
+  --border-negative: #eb5757;
+  --border-input: var(--grayscale--light);
+  --border-inverse: var(--grayscale--white);
+
+  /* Shadows */
+  --box-shadow-none: none;
+  --box-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  --box-shadow-md: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
+  --box-shadow-lg: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+
+  /* System */
+  --color-system-link: #0034ea;
+  --color-system-red: #eb5757;
+  --color-system-green: #27ae60;
+  --color-system-yellow: #f2c94c;
+  --color-system-blue: #2f80ed;
+  --color-system-orange: #f2994a;
+
+  /* BDS component CSS compatibility aliases */
+  --system--red: var(--color-system-red);
+  --background-tertiary: var(--surface-tertiary);
+  --surface-nav: var(--surface-primary);
+
+  /* ---- Typography (Poppins — Brik brand font) ---- */
+  --font-family-body: Poppins, sans-serif;
+  --font-family-label: Poppins, sans-serif;
+  --font-family-heading: Poppins, sans-serif;
+  --font-family-display: Poppins, sans-serif;
+
+  --font-weight--bold: var(--font-weight-bold);
+  --font-weight--semi-bold: 500;
+  --font-line-height--100: var(--font-line-height-tight);
+
+  /* ---- Spacing (Base mode) ---- */
+  --padding-none: var(--space-0);
+  --padding-tiny: var(--space-200);
+  --padding-xs: var(--space-250);
+  --padding-sm: var(--space-300);
+  --padding-md: var(--space-400);
+  --padding-lg: var(--space-600);
+  --padding-xl: var(--space-800);
+  --padding-huge: var(--space-1200);
+
+  --gap-none: var(--space-0);
+  --gap-tiny: var(--space-50);
+  --gap-xs: var(--space-100);
+  --gap-sm: var(--space-150);
+  --gap-md: var(--space-200);
+  --gap-lg: var(--space-400);
+  --gap-xl: var(--space-600);
+  --gap-huge: var(--space-800);
+
+  /* ---- Typography scale ---- */
+  --body-tiny: var(--font-size-25);
+  --body-xs: var(--font-size-50);
+  --body-sm: var(--font-size-75);
+  --body-md: var(--font-size-100);
+  --body-lg: var(--font-size-200);
+  --body-xl: var(--font-size-300);
+
+  --label-sm: var(--font-size-75);
+  --label-md: var(--font-size-100);
+  --label-lg: var(--font-size-200);
+  --label-xl: var(--font-size-300);
+
+  --heading-tiny: var(--font-size-100);
+  --heading-sm: var(--font-size-300);
+  --heading-md: var(--font-size-500);
+  --heading-lg: var(--font-size-700);
+  --heading-xl: var(--font-size-900);
+  --heading-xxl: var(--font-size-1000);
+  --heading-huge: var(--font-size-1200);
+
+  --icon-sm: var(--font-size-75);
+  --icon-md: var(--font-size-100);
+  --icon-lg: var(--font-size-200);
+
+  /* ---- Service category color primitives ---- */
+  --services--yellow: #f4d364;
+  --services--yellow-dark: #634716;
+  --services--yellow-light: #fffee1;
+  --services--green: #9ada6c;
+  --services--green-dark: #2a5542;
+  --services--green-light: #f8fff3;
+  --services--blue: #8ebbcc;
+  --services--blue-dark: #314952;
+  --services--blue-light: #f8fdff;
+  --services--purple: #c4b0eb;
+  --services--purple-dark: #362d48;
+  --services--purple-light: #eae3f3;
+  --services--orange: #e76134;
+  --services--orange-dark: #4e1400;
+  --services--orange-light: #ffe8dc;
+
+  /* BDS semantic service tokens */
+  --background-service-brand: var(--services--yellow);
+  --text-service-brand: var(--services--yellow-dark);
+  --background-service-marketing: var(--services--green);
+  --text-service-marketing: var(--services--green-dark);
+  --background-service-information: var(--services--blue);
+  --text-service-information: var(--services--blue-dark);
+  --background-service-product: var(--services--purple);
+  --text-service-product: var(--services--purple-dark);
+  --background-service-service: var(--services--orange);
+  --text-service-service: var(--services--orange-dark);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ================================================================
+   Dark mode overrides
+
+   Activated by data-theme="dark" on <html>, set via:
+     1. localStorage('theme') — user's explicit choice
+     2. prefers-color-scheme: dark — OS preference fallback
+     3. Anti-FOUC script in layout.tsx prevents flash on load
+   ================================================================ */
+:root[data-theme="dark"] {
+  /* Text */
+  --text-primary: var(--grayscale--lightest);
+  --text-secondary: var(--grayscale--light);
+  --text-muted: var(--grayscale--dark);
+  --text-brand-primary: var(--brand--primary);
+  --text-inverse: var(--grayscale--darkest);
+  --text-negative: #ff6b6b;
+  --text-warning: #f4d364;
+  --text-success: #9ada6c;
+
+  /* Surface */
+  --surface-primary: var(--grayscale--black);
+  --surface-secondary: var(--grayscale--darkest);
+  --surface-tertiary: var(--grayscale--darker);
+  --surface-negative: #3d1a1a;
+  --surface-warning: #2a2110;
+  --surface-success: #1a2a14;
+  --surface-brand-primary: var(--brand--primary);
+  --surface-brand-secondary: var(--grayscale--darkest);
+
+  /* Page */
+  --page-primary: var(--grayscale--black);
+  --page-secondary: var(--grayscale--darker);
+  --page-accent: var(--grayscale--darkest);
+
+  /* Background */
+  --background-brand-primary: var(--brand--primary);
+  --background-primary: var(--grayscale--darker);
+  --background-secondary: var(--grayscale--darkest);
+  --background-elevated: var(--grayscale--darker);
+  --background-inverse: var(--brand--primary);
+  --background-input: var(--grayscale--black);
+
+  /* Border */
+  --border-primary: var(--grayscale--darkest);
+  --border-secondary: var(--grayscale--darker);
+  --border-muted: var(--grayscale--darker);
+  --border-brand-primary: var(--brand--primary);
+  --border-negative: #ff6b6b;
+  --border-input: var(--grayscale--dark);
+  --border-inverse: var(--grayscale--black);
+
+  /* System */
+  --color-system-link: #6b8aff;
+
+  /* BDS compatibility aliases — dark mode */
+  --system--red: var(--color-system-red);
+  --background-tertiary: var(--surface-tertiary);
+  --surface-nav: var(--surface-primary);
+
+  /* Service category colors — dark mode (muted for dark backgrounds) */
+  --services--yellow: #d4b54a;
+  --services--yellow-dark: #f4d364;
+  --services--yellow-light: #2a2110;
+  --services--green: #7aba52;
+  --services--green-dark: #9ada6c;
+  --services--green-light: #1a2a14;
+  --services--blue: #6e9bac;
+  --services--blue-dark: #8ebbcc;
+  --services--blue-light: #141f24;
+  --services--purple: #a490cb;
+  --services--purple-dark: #c4b0eb;
+  --services--purple-light: #1e1828;
+  --services--orange: #c74e24;
+  --services--orange-dark: #e76134;
+  --services--orange-light: #241008;
+
+  /* BDS semantic service tokens — dark mode */
+  --background-service-brand: var(--services--yellow);
+  --text-service-brand: var(--services--yellow-dark);
+  --background-service-marketing: var(--services--green);
+  --text-service-marketing: var(--services--green-dark);
+  --background-service-information: var(--services--blue);
+  --text-service-information: var(--services--blue-dark);
+  --background-service-product: var(--services--purple);
+  --text-service-product: var(--services--purple-dark);
+  --background-service-service: var(--services--orange);
+  --text-service-service: var(--services--orange-dark);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ---- Base element styles ---- */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode logo inversion */
+:root[data-theme="dark"] .site-logo {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
 }

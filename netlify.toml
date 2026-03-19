@@ -1,0 +1,60 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Next.js on Netlify
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# SEO redirects — Webflow URL structure to new structure
+# These ensure Google ranking continuity after migration
+
+[[redirects]]
+  from = "/detail_service/*"
+  to = "/services/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/detail_service-lines/*"
+  to = "/services/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/detail_customer-story/*"
+  to = "/customer-stories/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/detail_post/*"
+  to = "/blog/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/detail_pricing/*"
+  to = "/plans"
+  status = 301
+
+[[redirects]]
+  from = "/customers/*"
+  to = "/industries/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/detail_customers/*"
+  to = "/industries/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/detail_templates/*"
+  to = "/templates/:splat"
+  status = 301
+
+# Security headers (supplement Next.js headers)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
