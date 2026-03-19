@@ -5,22 +5,70 @@ import { createClient } from './server';
  * All queries use the anon key (public read via RLS).
  */
 
+// Map portal category slugs to BDS ServiceBadge category names
+const CATEGORY_MAP: Record<string, 'brand' | 'marketing' | 'information' | 'product' | 'service'> = {
+  brand: 'brand',
+  marketing: 'marketing',
+  information: 'information',
+  service: 'service',
+  product: 'product',
+};
+
+export function mapCategorySlug(slug: string) {
+  return CATEGORY_MAP[slug] || 'brand';
+}
+
+// ============================================================
+// Service Categories (service lines)
+// ============================================================
+
 export async function getServiceCategories() {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('service_categories')
     .select('*')
+    .eq('is_public', true)
     .order('rank', { ascending: true });
 
   if (error) throw error;
   return data;
 }
 
+export async function getCategoryBySlug(slug: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('service_categories')
+    .select('*')
+    .eq('slug', slug)
+    .eq('is_public', true)
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+// ============================================================
+// Services
+// ============================================================
+
 export async function getServices() {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('services')
-    .select('*, service_categories(*)')
+    .select('*, service_categories(id, slug, name)')
+    .eq('is_public', true)
+    .order('rank', { ascending: true });
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getServicesByCategory(categoryId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('services')
+    .select('*')
+    .eq('category_id', categoryId)
     .eq('is_public', true)
     .order('rank', { ascending: true });
 
@@ -32,7 +80,7 @@ export async function getServiceBySlug(slug: string) {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('services')
-    .select('*, service_categories(*), offerings(*)')
+    .select('*, service_categories(id, slug, name), offerings(*)')
     .eq('slug', slug)
     .eq('is_public', true)
     .single();
@@ -40,6 +88,10 @@ export async function getServiceBySlug(slug: string) {
   if (error) throw error;
   return data;
 }
+
+// ============================================================
+// Support Plans
+// ============================================================
 
 export async function getSupportPlans() {
   const supabase = await createClient();
@@ -52,6 +104,10 @@ export async function getSupportPlans() {
   if (error) throw error;
   return data;
 }
+
+// ============================================================
+// Customer Stories
+// ============================================================
 
 export async function getCustomerStories() {
   const supabase = await createClient();
@@ -70,6 +126,35 @@ export async function getCustomerStoryBySlug(slug: string) {
   const { data, error } = await supabase
     .from('customer_stories')
     .select('*')
+    .eq('slug', slug)
+    .eq('is_public', true)
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+// ============================================================
+// Industry Pages
+// ============================================================
+
+export async function getIndustryPages() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('industry_pages')
+    .select('*')
+    .eq('is_public', true)
+    .order('rank', { ascending: true });
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getIndustryPageBySlug(slug: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('industry_pages')
+    .select('*, industry_page_topics(*, industry_page_topic_services(service_id, services(id, slug, name)))')
     .eq('slug', slug)
     .eq('is_public', true)
     .single();

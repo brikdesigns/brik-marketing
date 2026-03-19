@@ -1,27 +1,38 @@
+import { getServiceCategories, getSupportPlans, getCustomerStories, mapCategorySlug } from '@/lib/supabase/queries';
 import { ServiceLineGrid } from '@/components/marketing/ServiceLineGrid';
 import { SupportPlanGrid } from '@/components/marketing/SupportPlanGrid';
 import { FeaturedTestimonial } from '@/components/marketing/FeaturedTestimonial';
 import { HeroButtons } from '@/components/marketing/HeroButtons';
 import { AnalysisCta, BottomCta, ViewStoriesButton } from '@/components/marketing/CtaButtons';
 
-// TODO: Replace with Supabase queries once migration is run
-// import { getServiceCategories, getSupportPlans, getCustomerStories } from '@/lib/supabase/queries';
+export const revalidate = 3600; // ISR: 1 hour
 
-const serviceLines = [
-  { name: 'Brand Design', slug: 'brand-design', category: 'brand' as const, tagline: 'Build a lasting, consistent brand that builds trust' },
-  { name: 'Marketing Design', slug: 'marketing-design', category: 'marketing' as const, tagline: 'Show up where it matters — and make it count' },
-  { name: 'Information Design', slug: 'information-design', category: 'information' as const, tagline: 'Make the complicated simple' },
-  { name: 'Back-Office Design', slug: 'back-office-design', category: 'service' as const, tagline: 'The systems behind the scenes that keep you running' },
-  { name: 'Product Design', slug: 'product-design', category: 'product' as const, tagline: 'Build digital products people actually use' },
-];
+export default async function HomePage() {
+  const [categories, plans, stories] = await Promise.all([
+    getServiceCategories(),
+    getSupportPlans(),
+    getCustomerStories(),
+  ]);
 
-const supportPlans = [
-  { name: 'Marketing Support', slug: 'marketing-support', price: '$1,250', period: '/month', description: 'We act as your marketing department — handling everything from campaigns and emails to graphics and strategy.', features: ['Web design & updates', 'Email marketing', 'Social media graphics', 'Landing pages', 'Marketing strategy'] },
-  { name: 'Back-Office Support', slug: 'back-office-support', price: '$1,250', period: '/month', description: 'We handle the behind-the-scenes work — SOPs, file organization, CRM setup, and process automation.', features: ['SOP creation', 'File organization', 'CRM setup & cleanup', 'Automation & AI', 'Software audits'] },
-  { name: 'Product Support', slug: 'product-support', price: '$2,500', period: '/month', description: 'Ongoing product design — UX/UI, design systems, and development for SaaS, apps, and digital products.', features: ['UX/UI design', 'Design systems', 'Prototyping', 'Mobile & web apps', 'Content design'], highlighted: true },
-];
+  const serviceLines = categories.map((cat) => ({
+    name: cat.name,
+    slug: cat.slug,
+    category: mapCategorySlug(cat.slug),
+    tagline: cat.tagline || cat.name,
+  }));
 
-export default function HomePage() {
+  const supportPlans = plans.map((plan) => ({
+    name: plan.name,
+    slug: plan.slug,
+    price: plan.monthly_price_display || 'Contact',
+    period: '/month',
+    description: plan.home_description || plan.description || '',
+    features: [] as string[], // TODO: populate from support_plan_services
+    highlighted: plan.slug === 'product-support',
+  }));
+
+  const featuredStory = stories[0];
+
   return (
     <>
       {/* Hero */}
@@ -75,22 +86,24 @@ export default function HomePage() {
       </section>
 
       {/* Customer Story */}
-      <section style={{ padding: 'var(--padding-xl) var(--padding-lg)' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontFamily: 'var(--font-family-heading)', fontSize: 'var(--heading-lg)', color: 'var(--text-primary)', margin: 0 }}>
-            Latest Customer Story
-          </h2>
-          <div style={{ marginTop: 'var(--gap-lg)' }}>
-            <FeaturedTestimonial
-              quote="Brik Designs has been the best and most transparent marketing company we have ever worked with."
-              authorName="Dr. Haneen Matalgah"
-              authorRole="Co-Founder, Memphis Dental Studio"
-              rating={5}
-            />
+      {featuredStory && (
+        <section style={{ padding: 'var(--padding-xl) var(--padding-lg)' }}>
+          <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
+            <h2 style={{ fontFamily: 'var(--font-family-heading)', fontSize: 'var(--heading-lg)', color: 'var(--text-primary)', margin: 0 }}>
+              Latest Customer Story
+            </h2>
+            <div style={{ marginTop: 'var(--gap-lg)' }}>
+              <FeaturedTestimonial
+                quote={featuredStory.quote || featuredStory.short_description || ''}
+                authorName={featuredStory.quote_attribution || featuredStory.client_name}
+                authorRole={featuredStory.industry || undefined}
+                rating={5}
+              />
+            </div>
+            <ViewStoriesButton />
           </div>
-          <ViewStoriesButton />
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Bottom CTA */}
       <section style={{ backgroundColor: 'var(--surface-brand-primary)', padding: 'var(--padding-xl) var(--padding-lg)', textAlign: 'center' }}>

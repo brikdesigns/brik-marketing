@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { NewsletterForm } from './NewsletterForm';
 
 const footerNav = {
   services: [
@@ -68,6 +69,32 @@ export function Footer() {
 
         {/* Legal */}
         <FooterColumn title="Legal" links={footerNav.legal} />
+
+        {/* Newsletter */}
+        <div>
+          <h4
+            style={{
+              fontFamily: 'var(--font-family-label)',
+              fontSize: 'var(--label-md)',
+              fontWeight: 600,
+              color: 'var(--text-primary)',
+              marginBottom: 'var(--gap-md)',
+            }}
+          >
+            Newsletter
+          </h4>
+          <p
+            style={{
+              fontFamily: 'var(--font-family-body)',
+              fontSize: 'var(--body-xs)',
+              color: 'var(--text-secondary)',
+              marginBottom: 'var(--gap-sm)',
+            }}
+          >
+            Tips, resources, and updates for small businesses.
+          </p>
+          <NewsletterForm />
+        </div>
       </div>
 
       <div
