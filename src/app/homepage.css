@@ -16,10 +16,25 @@
   z-index: 0;
 }
 
+/* Webflow: .container-hero — centered in hero */
 .hero-container {
   max-width: 90%;
   margin: 0 auto;
   padding: 0 var(--padding-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100%;
+}
+
+/* Webflow: .content-wrapper.narrow — 80% width for text */
+.hero-container > * {
+  max-width: 80%;
+}
+
+.hero-container > .hero-buttons {
+  max-width: none;
 }
 
 /* Webflow: .text_display-sm.on-color-dark */

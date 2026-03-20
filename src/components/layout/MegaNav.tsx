@@ -87,14 +87,14 @@ export function MegaNav({ serviceLines, supportPlans, industries }: MegaNavProps
 
   return (
     <header className="mega-nav" ref={navRef}>
-      {/* Utility bar */}
+      {/* Utility bar — Webflow: .utility-navigation */}
       <div className="mega-nav__utility">
         <div className="mega-nav__container mega-nav__utility-inner">
-          <Link href="https://portal.brikdesigns.com" className="mega-nav__utility-link">
-            Customer Login
-          </Link>
-          <a href="tel:+19016437269" className="mega-nav__utility-link">
-            (901) 643-7269
+          <span className="mega-nav__utility-label" style={{ color: 'var(--text-brand-primary)' }}>
+            Talk to sales:
+          </span>
+          <a href="tel:+15614908714" className="mega-nav__utility-link">
+            (561) 490-8714
           </a>
           <ThemeToggle />
         </div>
