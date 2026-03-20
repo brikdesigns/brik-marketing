@@ -20,7 +20,7 @@ export async function MegaNavServer() {
     tagline: cat.tagline || '',
     services: services
       .filter((s: { category_id: string }) => s.category_id === cat.id)
-      .slice(0, 8)
+      /* Show all services — Webflow shows full list in mega nav */
       .map((s: { name: string; slug: string }) => ({ name: s.name, slug: s.slug })),
   }));
 

@@ -132,7 +132,9 @@ export function MegaNav({ serviceLines, supportPlans, industries }: MegaNavProps
 
               {open === 'services' && (
                 <div className="mega-nav__panel mega-nav__panel--services">
-                  <div className="mega-nav__panel-inner">
+                  {/* Webflow: .layout-submenu (flex row: 4-col grid + product promo) */}
+                  <div className="mega-nav__panel-inner mega-nav__services-layout">
+                    {/* Webflow: .inner-wrapper > .layout-nav-services-grid */}
                     <div className="mega-nav__services-grid">
                       {serviceLines
                         .filter((l) => l.category !== 'product')
@@ -144,7 +146,8 @@ export function MegaNav({ serviceLines, supportPlans, industries }: MegaNavProps
                             </Link>
                             <p className="mega-nav__service-tagline">{line.tagline}</p>
                             <ul className="mega-nav__service-list">
-                              {line.services.slice(0, 6).map((svc) => (
+                              {/* Show ALL services — Webflow shows full list */}
+                              {line.services.map((svc) => (
                                 <li key={svc.slug}>
                                   <Link
                                     href={`/services/${line.slug}/${svc.slug}`}
@@ -161,36 +164,34 @@ export function MegaNav({ serviceLines, supportPlans, industries }: MegaNavProps
                                 </li>
                               ))}
                             </ul>
-                            {line.services.length > 6 && (
-                              <Link
-                                href={`/services/${line.slug}`}
-                                className="mega-nav__view-all"
-                                onClick={() => setOpen(null)}
-                              >
-                                View All ({line.services.length})
-                              </Link>
-                            )}
                           </div>
                         ))}
                     </div>
 
-                    {/* Product Design promo */}
+                    {/* Webflow: .inner-wrapper.auto — Product promo card (5th column) */}
                     {serviceLines.find((l) => l.category === 'product') && (
-                      <div className="mega-nav__promo">
-                        <ServiceBadge category="product" size="md" />
-                        <div>
-                          <p className="mega-nav__promo-title">Need product design support?</p>
-                          <p className="mega-nav__promo-desc">
-                            SaaS, mobile apps, and enterprise — from wireframe to launch.
-                          </p>
-                          <Link
-                            href="/services/product"
-                            className="mega-nav__promo-cta"
-                            onClick={() => setOpen(null)}
-                          >
-                            Learn More
-                          </Link>
+                      <div className="mega-nav__product-promo">
+                        <div className="mega-nav__product-promo-img">
+                          <Image
+                            src="/images/product_mobile_app_2x.webp"
+                            alt="Product design"
+                            width={200}
+                            height={200}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
                         </div>
+                        <h5 className="mega-nav__product-promo-title">Need product design support?</h5>
+                        <p className="mega-nav__product-promo-desc">
+                          From mobile apps to enterprise solutions, we create experiences that are
+                          well-crafted, intuitive, and aligned with your business goals.
+                        </p>
+                        <Link
+                          href="/services/product"
+                          className="mega-nav__panel-btn"
+                          onClick={() => setOpen(null)}
+                        >
+                          Learn More
+                        </Link>
                       </div>
                     )}
                   </div>
