@@ -78,7 +78,7 @@ html {
 
   /* Surface */
   --surface-primary: var(--grayscale--white);
-  --surface-secondary: var(--grayscale--lightest);
+  --surface-secondary: var(--tan--lightest);
   --surface-tertiary: var(--grayscale--lighter);
   --surface-negative: #fdeaea;
   --surface-warning: var(--services--yellow-light);
@@ -319,6 +319,11 @@ body {
   color: var(--text-primary);
   font-family: var(--font-family-body);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Headings — Webflow site uses bold (700) for all heading levels */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
 }
 
 /* Dark mode logo inversion */

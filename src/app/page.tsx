@@ -37,17 +37,59 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: 'var(--padding-huge) var(--padding-lg)', textAlign: 'center' }}>
-        <h1 style={{ fontFamily: 'var(--font-family-heading)', fontSize: 'var(--heading-huge)', color: 'var(--text-primary)', lineHeight: 1.1, margin: 0 }}>
-          Marketing That Works.
-          <br />
-          Design That Builds.
-        </h1>
-        <p style={{ fontFamily: 'var(--font-family-body)', fontSize: 'var(--body-lg)', color: 'var(--text-secondary)', maxWidth: 640, margin: 'var(--gap-lg) auto 0' }}>
-          We help small businesses show up better, work smarter, and grow faster — brik by brik.
-        </p>
-        <HeroButtons />
-        <div style={{ marginTop: 'var(--gap-xl)', position: 'relative', maxWidth: 900, margin: 'var(--gap-xl) auto 0', borderRadius: 'var(--border-radius-lg)', overflow: 'hidden' }}>
+      <section style={{ backgroundColor: 'var(--surface-brand-primary)', padding: 'var(--padding-huge) var(--padding-lg)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <h1 style={{ fontFamily: 'var(--font-family-heading)', fontSize: 'var(--heading-huge)', fontWeight: 700, color: 'var(--text-on-color-dark)', lineHeight: 1.2, margin: 0 }}>
+            Marketing That Works.
+            <br />
+            Design That Builds.
+          </h1>
+          <p style={{ fontFamily: 'var(--font-family-body)', fontSize: 'var(--body-lg)', color: 'var(--text-on-color-dark)', opacity: 0.9, maxWidth: 700, margin: 'var(--gap-lg) 0 0' }}>
+            We help small businesses show up better, work smarter, and grow faster — brik by brik.
+          </p>
+          <div style={{ display: 'flex', gap: 'var(--gap-md)', marginTop: 'var(--gap-xl)', flexWrap: 'wrap' }}>
+            <a
+              href="/services"
+              style={{
+                display: 'inline-block',
+                fontFamily: 'var(--font-family-label)',
+                fontSize: 'var(--label-md)',
+                fontWeight: 600,
+                color: 'var(--text-primary)',
+                backgroundColor: 'var(--surface-primary)',
+                padding: 'var(--padding-sm) var(--padding-lg)',
+                borderRadius: 'var(--border-radius-md)',
+                textDecoration: 'none',
+              }}
+            >
+              Explore Design Services
+            </a>
+            <a
+              href="/contact"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 'var(--gap-xs)',
+                fontFamily: 'var(--font-family-label)',
+                fontSize: 'var(--label-md)',
+                fontWeight: 600,
+                color: 'var(--text-on-color-dark)',
+                border: '1px solid var(--text-on-color-dark)',
+                backgroundColor: 'transparent',
+                padding: 'var(--padding-sm) var(--padding-lg)',
+                borderRadius: 'var(--border-radius-md)',
+                textDecoration: 'none',
+              }}
+            >
+              Let&apos;s Talk &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section style={{ padding: 'var(--padding-xl) var(--padding-lg)', textAlign: 'center' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', borderRadius: 'var(--border-radius-lg)', overflow: 'hidden' }}>
           <Image
             src="/images/brik_designs_4x.webp"
             alt="Brik Designs — branding, marketing, and design services"
