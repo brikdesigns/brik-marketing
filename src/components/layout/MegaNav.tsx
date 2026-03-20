@@ -282,11 +282,22 @@ export function MegaNav({ serviceLines, supportPlans, industries }: MegaNavProps
 
               {open === 'about' && (
                 <div className="mega-nav__panel mega-nav__panel--about">
-                  <div className="mega-nav__panel-inner mega-nav__about-grid">
-                    <NavCard href="/about" title="Meet Brik" desc="Our story and approach" onClick={() => setOpen(null)} />
-                    <NavCard href="/about#value" title="Value of Design" desc="Why design matters for growth" onClick={() => setOpen(null)} />
-                    <NavCard href="/blog" title="Blog" desc="Tips, guides, and insights" onClick={() => setOpen(null)} />
-                    <NavCard href="/customer-stories" title="Customer Stories" desc="Results that speak for themselves" onClick={() => setOpen(null)} />
+                  <div className="mega-nav__panel-inner mega-nav__panel-row">
+                    {/* Webflow: .inner-wrapper.narrow — left intro */}
+                    <div className="mega-nav__panel-intro">
+                      <h3 className="mega-nav__panel-heading">About</h3>
+                      <p className="mega-nav__panel-desc">
+                        Brik gives you access to senior-level design and strategic
+                        support—without the full-time overhead.
+                      </p>
+                    </div>
+                    {/* Webflow: .layout-nav-4-col-about — 4 cards with images */}
+                    <div className="mega-nav__about-grid">
+                      <AboutNavCard href="/about" image="/images/brik_designs_4x.webp" title="Meet Brik" desc="Learn about the company and the Brik team" cta="Learn More" onClick={() => setOpen(null)} />
+                      <AboutNavCard href="/value" image="/images/value_of_design_4x.webp" title="The Value of Design" desc="Learn the value of design in four steps" cta="Learn More" onClick={() => setOpen(null)} />
+                      <AboutNavCard href="/blog" image="/images/blogs_4x.webp" title="Blog" desc="Stories, insights, and lessons learned from building our business" cta="View Posts" onClick={() => setOpen(null)} />
+                      <AboutNavCard href="/customer-stories" image="/images/customer_stories_2x.webp" title="Customer Stories" desc="Stories, insights, and lessons learned from building our business" cta="View Stories" onClick={() => setOpen(null)} />
+                    </div>
                   </div>
                 </div>
               )}
@@ -308,28 +319,43 @@ export function MegaNav({ serviceLines, supportPlans, industries }: MegaNavProps
               {open === 'plans' && (
                 <div className="mega-nav__panel mega-nav__panel--plans">
                   <div className="mega-nav__panel-inner mega-nav__panel-row">
+                    {/* Webflow: .inner-wrapper.narrow.stacked — left intro */}
                     <div className="mega-nav__panel-intro">
                       <h3 className="mega-nav__panel-heading">Support Plans</h3>
                       <p className="mega-nav__panel-desc">
-                        Monthly subscription plans for ongoing marketing, design, and systems support.
+                        Brik gives you access to senior-level design and strategic
+                        support—without the full-time overhead.
                       </p>
                       <Link href="/plans" className="mega-nav__panel-btn" onClick={() => setOpen(null)}>
-                        View Plans
+                        Learn More
                       </Link>
                     </div>
+                    {/* Webflow: .layout-nav-support — 3 plan cards with images */}
                     <div className="mega-nav__plans-grid">
-                      {supportPlans.map((plan) => (
-                        <Link
-                          key={plan.slug}
-                          href={`/plans#${plan.slug}`}
-                          className="mega-nav__plan-card"
-                          onClick={() => setOpen(null)}
-                        >
-                          <span className="mega-nav__plan-name">{plan.name}</span>
-                          <span className="mega-nav__plan-price">{plan.price}/mo</span>
-                          <span className="mega-nav__plan-desc">{plan.description}</span>
-                        </Link>
-                      ))}
+                      <AboutNavCard
+                        href="/plans#marketing-support"
+                        image="/images/marketing_social_media_2x.webp"
+                        title="Marketing Support"
+                        desc="We act as your marketing department—handling everything from campaigns and emails to graphics and strategy."
+                        cta="Learn More"
+                        onClick={() => setOpen(null)}
+                      />
+                      <AboutNavCard
+                        href="/plans#back-office-support"
+                        image="/images/service_automated_workflow_2x.webp"
+                        title="Back Office Support"
+                        desc="We streamline your behind-the-scenes operations—from workflows and automations to system cleanups and SOPs."
+                        cta="Learn More"
+                        onClick={() => setOpen(null)}
+                      />
+                      <AboutNavCard
+                        href="/plans#product-support"
+                        image="/images/product_mobile_app_2x.webp"
+                        title="Product Support"
+                        desc="Whether you're launching new features or improving your UX, we handle your product interface design end to end."
+                        cta="Learn More"
+                        onClick={() => setOpen(null)}
+                      />
                     </div>
                   </div>
                 </div>
@@ -386,11 +412,22 @@ export function MegaNav({ serviceLines, supportPlans, industries }: MegaNavProps
    Sub-components
    ──────────────────────────────────────────────────────────────── */
 
-function NavCard({ href, title, desc, onClick }: { href: string; title: string; desc: string; onClick: () => void }) {
+/**
+ * AboutNavCard — matches Webflow .list-item.comfortable structure:
+ * image frame (accent bg) + title + description + "Learn More →" button
+ * Used in About and Support Plans dropdowns.
+ */
+function AboutNavCard({ href, image, title, desc, cta, onClick }: {
+  href: string; image: string; title: string; desc: string; cta: string; onClick: () => void;
+}) {
   return (
-    <Link href={href} className="mega-nav__nav-card" onClick={onClick}>
-      <span className="mega-nav__nav-card-title">{title}</span>
-      <span className="mega-nav__nav-card-desc">{desc}</span>
+    <Link href={href} className="mega-nav__about-card" onClick={onClick}>
+      <div className="mega-nav__about-card-img">
+        <Image src={image} alt={title} width={400} height={400} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      </div>
+      <span className="mega-nav__about-card-title">{title}</span>
+      <span className="mega-nav__about-card-desc">{desc}</span>
+      <span className="mega-nav__about-card-cta">{cta} &rarr;</span>
     </Link>
   );
 }

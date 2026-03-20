@@ -397,15 +397,18 @@
   white-space: nowrap;
 }
 
-/* ─── About grid ──────────────────────────────────────────────── */
+/* ─── About grid (4-col with image cards) ────────────────────── */
+/* Webflow: .layout-nav-4-col-about */
 
 .mega-nav__about-grid {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--gap-md);
 }
 
-/* ─── Plans grid ──────────────────────────────────────────────── */
+/* ─── Plans grid (3-col with image cards) ────────────────────── */
+/* Webflow: .layout-nav-support */
 
 .mega-nav__plans-grid {
   flex: 1;
@@ -414,39 +417,58 @@
   gap: var(--gap-md);
 }
 
-.mega-nav__plan-card {
+/* ─── About/Plans card (shared structure) ────────────────────── */
+/* Webflow: .list-item.comfortable */
+
+.mega-nav__about-card {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-xs);
-  padding: var(--padding-md);
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-secondary);
-  border-radius: var(--border-radius-md);
+  gap: var(--gap-sm);
   text-decoration: none;
-  transition: border-color 0.15s;
 }
 
-.mega-nav__plan-card:hover {
-  border-color: var(--border-brand-primary);
+/* Webflow: .img-frame-service */
+.mega-nav__about-card-img {
+  aspect-ratio: 1;
+  border-radius: var(--border-radius-lg);
+  background-color: var(--surface-accent);
+  overflow: hidden;
 }
 
-.mega-nav__plan-name {
-  font-family: var(--font-family-heading);
-  font-size: var(--heading-sm);
+.mega-nav__about-card-title {
+  font-family: var(--font-family-label);
+  font-size: var(--label-sm);
+  font-weight: 600;
   color: var(--text-primary);
 }
 
-.mega-nav__plan-price {
-  font-family: var(--font-family-heading);
-  font-size: var(--heading-tiny);
-  color: var(--text-brand-primary);
-  font-weight: 600;
-}
-
-.mega-nav__plan-desc {
+.mega-nav__about-card-desc {
   font-family: var(--font-family-body);
   font-size: var(--body-xs);
   color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Webflow: .button-secondary-sm */
+.mega-nav__about-card-cta {
+  font-family: var(--font-family-label);
+  font-size: var(--label-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-md);
+  padding: var(--padding-xs) var(--padding-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  margin-top: auto;
+  align-self: flex-start;
+  transition: border-color 0.15s;
+}
+
+.mega-nav__about-card:hover .mega-nav__about-card-cta {
+  border-color: var(--border-brand-primary);
+  color: var(--text-brand-primary);
 }
 
 /* ─── Nav card (reusable) ─────────────────────────────────────── */
