@@ -1,7 +1,10 @@
+/* ── Layer order: later = higher cascade priority ── */
+@layer bds-tokens, bds-components, client-theme, client-overrides;
+
 /* BDS Design System — fonts + auto-generated tokens (Style Dictionary from Figma) */
-@import '../../brik-bds/tokens/fonts.css';
-@import '../../brik-bds/tokens/figma-tokens.css';
-@import '../../brik-bds/tokens/gap-fills.css';
+@import '../../brik-bds/tokens/fonts.css'        layer(bds-tokens);
+@import '../../brik-bds/tokens/figma-tokens.css'  layer(bds-tokens);
+@import '../../brik-bds/tokens/gap-fills.css'     layer(bds-tokens);
 /* bridge.css removed — it maps Webflow internal token names (--_color---*)
    to clean BDS names, but this site uses BDS tokens directly. The bridge
    introduced circular references (e.g., --border-radius-md: var(--border-radius-md))
